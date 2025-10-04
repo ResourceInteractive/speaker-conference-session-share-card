@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Share Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Session Share Card Generator</h1>
+            <form id="session-form">
+                <fieldset>
+                    <legend>Branding & Colors</legend>
+                    <label for="confName">Conference Name</label>
+                    <input type="text" id="confName" value="Tech Summit 2025">
+
+                    <div class="file-input-group">
+                        <label>Conference Logo: <input type="file" id="confLogo" accept="image/*"></label>
+                        <label>Background Image: <input type="file" id="bgImage" accept="image/*"></label>
+                    </div>
+
+                    <div class="color-picker-group">
+                        <div>
+                            <label for="bgColor">Background</label>
+                            <input type="color" id="bgColor" value="#1a2b4d">
+                        </div>
+                        <div>
+                            <label for="titleColor">Title Text</label>
+                            <input type="color" id="titleColor" value="#ffffff">
+                        </div>
+                        <div>
+                            <label for="speakerColor">Speaker Text</label>
+                            <input type="color" id="speakerColor" value="#ffffff">
+                        </div>
+                        <div>
+                            <label for="accentColor">Accent</label>
+                            <input type="color" id="accentColor" value="#00aaff">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Session Details</legend>
+                    <label for="sessionTitle">Session Title</label>
+                    <input type="text" id="sessionTitle" required value="Building the Future with AI">
+
+                    <label for="sessionLink">Session Link (for QR Code)</label>
+                    <input type="url" id="sessionLink" required value="https://example.com/session/123">
+                    
+                    <label for="sessionTime">Date & Time</label>
+                    <input type="text" id="sessionTime" required value="October 30, 2025 | 10:30 AM PT">
+
+                    <label for="sessionLocation">Location / Room</label>
+                    <input type="text" id="sessionLocation" required value="Sunrise Auditorium">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Speakers</legend>
+                    <div id="speakers-wrapper">
+                        </div>
+                    <button type="button" id="add-speaker-btn">Add Speaker</button>
+                </fieldset>
+
+                <button type="submit" class="generate-btn">Generate Image</button>
+            </form>
+            <a id="download-link" class="download-btn disabled">Download Image</a>
+            <div id="share-container" class="share-container" style="display: none;">
+    <p class="share-title">Share this card</p>
+    <button type="button" id="share-api-btn" class="share-btn">Share</button>
+    
+    <div id="fallback-share" class="fallback-share">
+        <a id="share-twitter" class="share-btn twitter" href="#" target="_blank">Share on Twitter</a>
+        <a id="share-facebook" class="share-btn facebook" href="#" target="_blank">Share on Facebook</a>
+        <p class="share-instructions">
+            Hint: Download the image first, then attach it to your post!
+        </p>
+    </div>
+</div>
+        </div>
+
+        <div class="canvas-container">
+            <h2>Preview</h2>
+            <canvas id="social-card" width="1200" height="630"></canvas>
+            <div id="qrcode" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
